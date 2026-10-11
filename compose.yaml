@@ -1,0 +1,23 @@
+services:
+  trace:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      TRACE_DB: ${TRACE_DB:-/app/data/trace.db}
+      TRACE_PASSWORD: ${TRACE_PASSWORD:?Set TRACE_PASSWORD in .env}
+      TRACE_ORIGIN: ${TRACE_ORIGIN:-http://127.0.0.1:3000}
+      TRACE_SECURE_COOKIE: ${TRACE_SECURE_COOKIE:-false}
+    volumes:
+      - trace-data:/app/data
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    stop_grace_period: 15s
+volumes:
+  trace-data:
