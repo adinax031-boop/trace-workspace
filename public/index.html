@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#f6f5ef" />
+    <meta
+      name="description"
+      content="Trace — a quiet home for the reasoning behind your engineering decisions."
+    />
+    <title>Trace · Think clearly. Build deliberately.</title>
+    <link rel="icon" href="/favicon.svg" />
+    <link rel="stylesheet" href="/style.css" />
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <section id="login" class="login" hidden>
+      <div class="login-card">
+        <div class="brand"><span class="mark">t.</span> trace</div>
+        <p class="eyebrow">A LITTLE SPACE FOR BIG IDEAS</p>
+        <h1>Good decisions<br />leave a trace.</h1>
+        <p class="muted">Keep your context, choices, and evidence together.</p>
+        <form id="login-form">
+          <label for="password">Workspace password</label
+          ><input
+            id="password"
+            type="password"
+            autocomplete="current-password"
+            required
+            maxlength="1024"
+          /><button class="primary" type="submit">
+            Open your workspace <span aria-hidden="true">↗</span>
+          </button>
+          <p id="login-error" role="alert"></p>
+        </form>
+        <small>Private by design. Self-hosted. Yours.</small>
+      </div>
+      <div class="login-art" aria-hidden="true">
+        <div class="orbit one"></div>
+        <div class="orbit two"></div>
+        <div class="orbit three"></div>
+        <span class="art-label">CONTEXT → CHOICE → CLARITY</span>
+      </div>
+    </section>
+    <div id="workspace" hidden>
+      <aside>
+        <a class="brand" href="/"
+          ><span class="mark">t.</span> trace<span class="beta">v1</span></a
+        >
+        <p class="eyebrow nav-heading">YOUR WORKSPACE</p>
+        <nav aria-label="Workspace filters">
+          <button class="nav-item active" data-filter="all">
+            <span>◈</span> All decisions <b id="nav-count">0</b></button
+          ><button class="nav-item" data-filter="exploring">
+            <span>◌</span> Exploring</button
+          ><button class="nav-item" data-filter="accepted">
+            <span>✓</span> Accepted</button
+          ><button class="nav-item" data-filter="revisited">
+            <span>↻</span> Revisited
+          </button>
+        </nav>
+        <div class="aside-note">
+          <span class="sprout">✳</span>
+          <h3>Think in the open.</h3>
+          <p>A decision is more useful when you remember why you made it.</p>
+        </div>
+        <div class="aside-bottom">
+          <button id="export">↓ Export backup</button
+          ><button id="logout">↗ Lock workspace</button
+          ><small><span class="dot"></span> Stored on your server</small>
+        </div>
+      </aside>
+      <main>
+        <header>
+          <span class="breadcrumb"
+            >Workspace <span>/</span> Decision journal</span
+          ><span class="header-note"
+            >A clearer way forward <span aria-hidden="true">✳</span></span
+          >
+        </header>
+        <section class="intro">
+          <div>
+            <p class="eyebrow">THINK CLEARLY. BUILD DELIBERATELY.</p>
+            <h1>
+              Your next good decision<br />starts here<span class="accent"
+                >.</span
+              >
+            </h1>
+            <p class="muted">
+              Capture the why. Follow the evidence. Leave a trail.
+            </p>
+          </div>
+          <button class="primary" id="new">+ New decision</button>
+        </section>
+        <section class="stats" aria-label="Decision summary">
+          <div>
+            <span>Total decisions</span><strong id="total">0</strong
+            ><small>Your thinking, connected</small>
+          </div>
+          <div>
+            <span><i class="dot amber"></i> Exploring</span
+            ><strong id="exploring">0</strong
+            ><small>Questions worth asking</small>
+          </div>
+          <div>
+            <span><i class="dot"></i> Accepted</span
+            ><strong id="accepted">0</strong
+            ><small>Choices backed by reasoning</small>
+          </div>
+          <div>
+            <span><i class="dot purple"></i> Revisited</span
+            ><strong id="revisited">0</strong
+            ><small>Room to change your mind</small>
+          </div>
+        </section>
+        <section class="journal">
+          <div class="section-heading">
+            <h2>The decision trail <span id="result-count"></span></h2>
+            <div class="tools">
+              <label class="search"
+                ><span aria-hidden="true">⌕</span
+                ><input
+                  type="search"
+                  id="search"
+                  placeholder="Search your thinking…"
+                  aria-label="Search decisions" /></label
+              ><select id="project" aria-label="Filter by project">
+                <option value="">All projects</option>
+              </select>
+            </div>
+          </div>
+          <div class="filter-line">
+            <p id="filter-label">
+              Every idea has a beginning. Keep yours here.
+            </p>
+            <button id="demo" class="text-button">
+              Try a sample journal ↗
+            </button>
+          </div>
+          <div id="cards" class="cards" aria-live="polite"></div>
+          <div id="empty" class="empty" hidden>
+            <span>✳</span>
+            <h2>A clean page. A fresh perspective.</h2>
+            <p>Add your first decision, or explore the sample journal.</p>
+            <button class="secondary" id="empty-new">Create a decision</button>
+          </div>
+        </section>
+        <footer>
+          Built for thoughtful builders.<span>trace / open source / MIT</span>
+        </footer>
+      </main>
+    </div>
+    <dialog id="editor">
+      <form id="record-form">
+        <div class="dialog-heading">
+          <div>
+            <p class="eyebrow">LEAVE A TRACE</p>
+            <h2 id="editor-title">A new decision</h2>
+          </div>
+          <button
+            type="button"
+            class="icon-button"
+            id="close-editor"
+            aria-label="Close editor"
+          >
+            ×
+          </button>
+        </div>
+        <label for="title">What are you deciding?</label
+        ><input
+          id="title"
+          name="title"
+          required
+          maxlength="120"
+          placeholder="e.g. Choose a database for the first release"
+        />
+        <div class="form-row">
+          <div>
+            <label for="record-project">Project</label
+            ><input
+              id="record-project"
+              name="project"
+              required
+              maxlength="60"
+              placeholder="Project name"
+            />
+          </div>
+          <div>
+            <label for="status">Status</label
+            ><select id="status" name="status">
+              <option value="exploring">Exploring</option>
+              <option value="accepted">Accepted</option>
+              <option value="revisited">Revisited</option>
+            </select>
+          </div>
+        </div>
+        <label for="context"
+          >Context <small>What matters? What are the constraints?</small></label
+        ><textarea
+          id="context"
+          name="context"
+          maxlength="4000"
+          rows="3"
+        ></textarea
+        ><label for="decision"
+          >Decision <small>What did you choose, and why?</small></label
+        ><textarea
+          id="decision"
+          name="decision"
+          maxlength="4000"
+          rows="3"
+        ></textarea
+        ><label for="evidence"
+          >Evidence
+          <small>Experiments, results, links, or counterarguments</small></label
+        ><textarea
+          id="evidence"
+          name="evidence"
+          maxlength="4000"
+          rows="3"
+        ></textarea
+        ><label for="tags">Tags <small>Comma separated, up to 8</small></label
+        ><input
+          id="tags"
+          name="tags"
+          placeholder="architecture, performance"
+          maxlength="199"
+        />
+        <p id="form-error" role="alert"></p>
+        <div class="dialog-actions">
+          <button id="delete" class="danger" type="button" hidden>
+            Delete decision</button
+          ><button class="primary" id="save" type="submit">
+            Save decision ↗
+          </button>
+        </div>
+      </form>
+    </dialog>
+    <dialog id="confirm-dialog">
+      <h2>Delete this decision?</h2>
+      <p>
+        This permanently removes it from your journal. Export a backup first if
+        you need a copy.
+      </p>
+      <div class="dialog-actions">
+        <button id="cancel-delete" class="secondary">Keep decision</button
+        ><button id="confirm-delete" class="danger">Delete permanently</button>
+      </div>
+    </dialog>
+    <div id="toast" role="status" hidden></div>
+  </body>
+</html>
