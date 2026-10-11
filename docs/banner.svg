@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="520" viewBox="0 0 1440 520">
+<rect width="1440" height="520" rx="16" fill="#f1f2e9"/>
+<rect x="860" y="0" width="580" height="520" fill="#dce4d1"/>
+<g stroke="#96a780" fill="none" stroke-width="1.2" transform="translate(1150 242)"><ellipse rx="162" ry="115" transform="rotate(-30)"/><ellipse rx="162" ry="115" transform="rotate(30)"/><ellipse rx="162" ry="115" transform="rotate(90)"/></g>
+<text x="1114" y="278" fill="#849b66" font-size="94" font-family="Georgia,serif">✳</text>
+<rect x="74" y="62" width="44" height="44" rx="12" fill="#294d3d"/><text x="85" y="96" fill="#ffffff" font-size="39" font-style="italic" font-family="Georgia,serif">t.</text><text x="132" y="94" fill="#294d3d" font-size="30" font-weight="bold" font-family="Arial,sans-serif">trace</text>
+<text x="74" y="167" fill="#66765a" font-size="12" letter-spacing="3" font-family="Arial,sans-serif">THINK CLEARLY. BUILD DELIBERATELY.</text>
+<text x="74" y="254" fill="#263c32" font-size="68" letter-spacing="-2" font-family="Georgia,serif">Good decisions</text><text x="74" y="328" fill="#263c32" font-size="68" letter-spacing="-2" font-family="Georgia,serif">leave a trace.</text>
+<text x="76" y="378" fill="#66765a" font-size="18" font-family="Arial,sans-serif">A quiet home for your choices, context, and evidence.</text>
+<line x1="76" y1="420" x2="785" y2="420" stroke="#d5ddcb"/>
+<text x="76" y="456" fill="#66765a" font-size="12" letter-spacing="2" font-family="Arial,sans-serif">SELF-HOSTED / OPEN SOURCE / YOURS</text>
+<text x="997" y="431" fill="#66765a" font-size="16" font-style="italic" font-family="Georgia,serif">a thought, taking shape.</text>
+</svg>
